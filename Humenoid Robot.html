@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Big Hero Robot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+      color: #4CAF50;
+    }
+
+    .question-button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .answer-box {
+      display: none;
+      margin-top: 10px;
+      background-color: #e0e0e0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .done-button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .tour-button-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    #takeTour {
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .tour-text {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Big Hero Robot</h1>
+
+  <!-- Question Buttons -->
+  <div>
+    <button class="question-button" onclick="showAnswer('answer1')">What does Big Hero do?</button>
+    <div id="answer1" class="answer-box">
+      <p>Big Hero is a robotics academy that offers a wide range of courses for students of different age groups. We guide our students by offering expert advice for their future careers in robotics and related fields. Our hands-on approach allows students to interact with real-world robotics systems, applying what they've learned in the classroom. Additionally, we organize large-scale competitions both in Egypt and internationally, where students can showcase their skills and compete on the global stage.</p>
+      <button class="done-button" onclick="hideAnswer('answer1')">Done</button>
+    </div>
+
+    <button class="question-button" onclick="showAnswer('answer2')">What courses do you offer?</button>
+    <div id="answer2" class="answer-box">
+      <p>We offer a range of courses tailored to different age groups and skill levels. For younger students (ages 5 to 9), we provide introductory Lego robotics courses. For students between 9 to 16 years old, we offer electronics and basic robotics courses. For university students, we have advanced courses covering various topics in robotics, electronics, AI, and more. We also offer flexibility in course selection, allowing students to choose based on their needs and interests.</p>
+      <button class="done-button" onclick="hideAnswer('answer2')">Done</button>
+    </div>
+
+    <button class="question-button" onclick="showAnswer('answer3')">What can you add for me?</button>
+    <div id="answer3" class="answer-box">
+      <p>At Big Hero, we provide a unique and engaging learning environment. Our state-of-the-art "Learning Street" is designed to enhance your educational experience, offering you a hands-on approach to learning. This space is designed for practical learning and experimentation, making it both fun and educational. You will have the opportunity to test your knowledge and skills in various practical activities, preparing you for a successful future in robotics and technology.</p>
+      <button class="done-button" onclick="hideAnswer('answer3')">Done</button>
+    </div>
+  </div>
+
+  <!-- Additional Questions (Optional) -->
+  <div>
+    <button class="question-button" onclick="showAnswer('answer4')">How can I get started?</button>
+    <div id="answer4" class="answer-box">
+      <p>Getting started with Big Hero is easy! Simply visit our website, fill out an inquiry form, or contact us directly. We’ll guide you through the available courses and help you choose the best fit for your age and interests. Our team is ready to assist with any questions you may have.</p>
+      <button class="done-button" onclick="hideAnswer('answer4')">Done</button>
+    </div>
+
+    <button class="question-button" onclick="showAnswer('answer5')">What makes Big Hero different?</button>
+    <div id="answer5" class="answer-box">
+      <p>Big Hero stands out because of our hands-on, interactive learning approach. We prioritize not just theoretical knowledge, but also practical application. Our competitions, mentorship programs, and diverse course offerings give students a unique opportunity to excel in robotics and technology. Our global network allows students to connect with industry professionals, gaining valuable insights and experience that set them apart in the field.</p>
+      <button class="done-button" onclick="hideAnswer('answer5')">Done</button>
+    </div>
+  </div>
+
+  <!-- Take a Tour Section -->
+  <div class="tour-button-container">
+    <p class="tour-text">Click below to start the tour in our branch:</p>
+    <button id="takeTour" onclick="startTour()">Take a Tour</button>
+  </div>
+
+  <script>
+    // Function to show the answer box when a question button is pressed
+    function showAnswer(answerId) {
+      document.getElementById(answerId).style.display = 'block';
+    }
+
+    // Function to hide the answer box when the Done button is pressed
+    function hideAnswer(answerId) {
+      document.getElementById(answerId).style.display = 'none';
+    }
+
+    // Function to start the tour when the "Take a Tour" button is pressed
+    function startTour() {
+      fetch('http://192.168.1.100/tour/start')  // Change IP to your robot's local IP
+        .then(response => response.text())
+        .then(data => {
+          alert('Tour Started: ' + data);  // You can replace the alert with any custom logic you want
+        })
+        .catch(err => {
+          console.error('Error:', err);
+        });
+    }
+  </script>
+</body>
+</html>
